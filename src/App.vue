@@ -84,6 +84,7 @@ img {
   --text-main: #ffffff; /* 主文字 */
   --text-sub: #888; /* 次要文字 */
   --radius: 16px; /* 圆角 */
+  --experience-line: #adc7d72e;
 }
 
 /* 浅色主题：加在 html 上的 light class 触发 */

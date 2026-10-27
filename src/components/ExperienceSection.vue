@@ -15,18 +15,22 @@
       <div class="profile">
         <figure class="portrait">
           <img
-            src="/public/experience-ip.webp"
+            src="/public/experience-ip.png"
             alt="Hi, I am XWT"
           />
         </figure>
         <div class="about">
-          <p class="intro">8 年政企 UI 产品设计师、工程师，擅长项目方案、界面设计与标书交付。</p>
+          <p class="eyebrow">ABOUT ME</p>
+          <h3>Hi, I am XWT</h3>
+          <p class="intro">
+            8 年政企 UI/UX设计师、 产品设计师、工程师，擅长项目方案、界面设计与标书交付。
+          </p>
 
           <!-- 4 张信息卡片：网格布局 -->
           <div class="highlights">
             <article>
               <span>当前身份</span>
-              <strong>UI Designer</strong>
+              <strong>UI/UX Designer</strong>
             </article>
             <article>
               <span>服务方向</span>
@@ -81,9 +85,14 @@
             :key="i"
             class="career-item"
           >
+            <div
+              class="career-marker"
+              aria-hidden="true"
+            ></div>
             <time>{{ item.time }}</time>
             <h4>{{ item.company }}</h4>
-            <strong>{{ item.desc }}</strong>
+            <strong>{{ item.role }}</strong>
+            <p>{{ item.desc }}</p>
           </article>
         </div>
       </div>
@@ -109,17 +118,37 @@ const careers = careerList
 
 /* 区块标题 */
 .section-heading p {
+  color: var(--text-main);
+  letter-spacing: 0.12em;
+  margin: 7px 0 0;
   font-size: 14px;
-  color: var(--accent);
-  letter-spacing: 2px;
-  margin-bottom: 8px;
 }
 .section-heading h2 {
-  font-size: 48px;
-  font-weight: 800;
+  color: #f7fbfc;
+  letter-spacing: -0.035em;
+  margin: 0;
+  font-family:
+    DIN Pro,
+    Arial,
+    Helvetica,
+    sans-serif;
+  font-size: clamp(34px, 3.5vw, 58px);
+  font-weight: 300;
+  line-height: 1;
   margin-bottom: 60px;
+  font-family:
+    DIN Pro,
+    Arial,
+    Helvetica,
+    sans-serif;
 }
-
+.section-heading h2 span {
+  color: var(--accent);
+  margin-left: 8px;
+  font-size: 0.48em;
+  display: inline-block;
+  transform: translateY(-0.1em);
+}
 /* 个人简介：左图右文，网格布局 */
 .profile {
   display: grid;
@@ -127,22 +156,47 @@ const careers = careerList
   gap: 60px;
 }
 .portrait img {
-  width: 100%;
   border-radius: var(--radius);
+  object-fit: cover;
+  object-position: center 29%;
+  width: 100%;
+  height: 100%;
 }
 .eyebrow {
-  font-size: 12px;
+  /* font-size: 12px;
   color: var(--accent);
-  letter-spacing: 2px;
+  letter-spacing: 2px; */
+  color: var(--accent);
+  letter-spacing: 0.14em;
+  margin: 0 0 8px;
+  font-family:
+    DIN Pro,
+    Arial,
+    Helvetica,
+    sans-serif;
+  font-size: 9px;
+  font-weight: 800;
 }
 
 .about h3 {
-  font-size: 32px;
-  margin: 8px 0 16px;
+  color: var(--text-main);
+  letter-spacing: -0.04em;
+  margin: 0;
+  font-family:
+    DIN Pro,
+    Arial,
+    Helvetica,
+    sans-serif;
+  font-size: clamp(38px, 4.2vw, 64px);
+  font-weight: 300;
+  line-height: 1;
 }
 .intro {
   color: var(--text-sub);
-  margin-bottom: 32px;
+  max-width: 780px;
+  margin: 18px 0 0;
+  font-size: 14px;
+  line-height: 1.85;
 }
 
 /* 信息卡片：两列网格 */
@@ -152,61 +206,120 @@ const careers = careerList
   gap: 12px;
   margin-bottom: 32px;
 }
-
-.highlights article {
-  padding: 16px;
-  background: var(--bg-card);
-  border-radius: 12px;
+.highlights article::nth-child(odd) {
+  padding-right: clamp(18px, 2.4vw, 34px);
 }
+.highlights article {
+  border-bottom: 1px solid var(--experience-line);
+  min-width: 0;
+  padding: 16px 0 14px 0;
+}
+
 .highlights span {
-  display: block;
+  /* display: block;
   font-size: 12px;
   color: var(--text-sub);
-  margin-bottom: 4px;
+  margin-bottom: 4px; */
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  margin-bottom: 8px;
+  font-size: 10px;
+  display: block;
 }
-
+.highlights strong {
+  color: #fffffff0;
+  font-variant-numeric: tabular-nums;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family:
+    DIN Pro,
+    Microsoft YaHei,
+    sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  display: block;
+  overflow: hidden;
+}
 /* 数据：三列网格 */
 .stats {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* 三列等宽 */
   gap: 16px;
-  margin-bottom: 32px;
+  border-bottom: 1px solid #cbe0e829;
+  margin-top: 0;
+}
+.stats article {
+  min-width: 0;
+  padding: 24px 18px 24px 0;
+  position: relative;
 }
 .stats strong {
-  font-size: 32px;
-  font-weight: 800;
+  color: var(--text-main);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.055em;
+  font-family:
+    DIN Pro,
+    Arial,
+    Helvetica,
+    sans-serif;
+  font-size: clamp(28px, 2.5vw, 42px);
+  font-weight: 500;
+  line-height: 0.95;
+  display: block;
+}
+.stats strong span {
   color: var(--accent);
+  letter-spacing: 0;
+  margin-left: 3px;
+  font-size: 0.48em;
 }
 .stats p {
-  font-size: 12px;
   color: var(--text-sub);
+  letter-spacing: 0.12em;
+  margin: 10px 0 0;
+  font-size: 10px;
 }
 
 /* 标签 */
+.tags {
+  grid-template-columns: 1fr;
+  align-items: start;
+  gap: 10px;
+  margin-top: 24px;
+  display: grid;
+}
 .tags > p {
-  font-size: 12px;
-  color: var(--text-sub);
-  margin: 8px;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+  margin: 0;
+  font-size: 10px;
 }
 
 .tags > div {
-  display: block;
-  flex-wrap: wrap; /* 允许换行 */
+  flex-wrap: wrap;
   gap: 8px;
+  display: flex;
 }
 
 .tags span {
-  padding: 6px 14px;
-  background: var(--bg-card);
-  border-radius: 999px; /* 胶囊形状 */
-  font-size: 13px;
+  color: #eaf3f6b8;
+  background: #ffffff06;
+  border: 1px solid #d7e9ef2e;
+  border-radius: 999px;
+  padding: 7px 11px;
+  font-size: 10px;
 }
 
 /* 工作经历时间线 */
 .career {
-  margin-top: 80px;
+  margin-top: clamp(42px, 6vh, 72px);
 }
-
+.career-title {
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 20px;
+  display: flex;
+}
 .career-title p {
   font-size: 12px;
   color: var(--accent);
@@ -214,38 +327,70 @@ const careers = careerList
 }
 
 .career-title h3 {
-  font-size: 28px;
-  margin-bottom: 24px;
+  color: #f0f7f9b8;
+  letter-spacing: 0.06em;
+  margin: 0;
+  font-size: 20px;
+  font-weight: 500;
 }
 
 .timeline {
-  display: flex;
-  /* 竖排 */
-  flex-direction: column;
-  gap: 24px;
+  border-top: 1px solid #cbe0e838;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  display: grid;
 }
 
 .career-item {
-  padding: 24px;
+  /* padding: 24px;
   background: var(--bg-card);
-  border-radius: var(--radius);
+  border-radius: var(--radius); */
+  min-width: 0;
+  padding: 24px clamp(18px, 2vw, 32px) 0 0;
+  position: relative;
+}
+.career-marker {
+  background: var(--accent);
+  width: 9px;
+  height: 9px;
+  position: absolute;
+  top: -5px;
+  left: 0;
+  transform: rotate(45deg);
+  box-shadow: 0 0 18px #c9ff1ab8;
 }
 .career-item time {
-  font-size: 13px;
-  color: var(--accent);
+  color: #c9ff1ac2;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.05em;
+  font-family:
+    DIN Pro,
+    Arial,
+    Helvetica,
+    sans-serif;
+  font-size: 10px;
 }
 .career-item h4 {
-  font-size: 18px;
-  margin: 8px 0 4px;
+  color: #f6fafb;
+  margin: 12px 0 8px;
+  font-size: clamp(16px, 1.25vw, 20px);
+  font-weight: 600;
 }
 .career-item strong {
-  font-size: 14px;
-  color: var(--text-sub);
+  color: #c9ff1ae0;
+  background: #c9ff1a09;
+  border: 1px solid #c9ff1a57;
+  border-radius: 999px;
+  padding: 5px 9px;
+  font-size: 10px;
+  font-weight: 700;
+  display: inline-flex;
 }
 .career-item p {
-  margin-top: 12px;
-  color: var(--text-sub);
-  font-size: 14px;
+  color: #e0ecf185;
+  max-width: 360px;
+  margin: 14px 0 0;
+  font-size: 12px;
+  line-height: 1.7;
 }
 
 @media (max-width: 768px) {

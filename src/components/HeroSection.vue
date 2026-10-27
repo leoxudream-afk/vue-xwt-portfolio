@@ -99,9 +99,17 @@
   overflow: hidden;
 }
 .hero-media video {
+  /* width: 100%;
+  height: 100%;
+  object-fit: cover; */
+  object-fit: cover;
+  object-position: center 48%;
+  opacity: 1;
+  filter: none;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  display: block;
+  transform: scale(1.006);
 }
 .hero-shade {
   position: absolute;
