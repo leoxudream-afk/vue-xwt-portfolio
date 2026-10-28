@@ -7,15 +7,15 @@
     <div class="section-inner">
       <!-- 区块标题 -->
       <header class="section-heading">
-        <p>个人经历</p>
         <h2>WORK EXPERIENCE <span>↘</span></h2>
+        <p>个人经历</p>
       </header>
 
       <!-- 个人简介：左图右文 -->
       <div class="profile">
         <figure class="portrait">
           <img
-            src="/public/experience-ip.png"
+            src="/experience-ip.png"
             alt="Hi, I am XWT"
           />
         </figure>
@@ -117,8 +117,15 @@ const careers = careerList
 }
 
 /* 区块标题 */
+.section-heading {
+  flex-direction: column-reverse;
+  align-items: flex-start;
+  margin-bottom: 24px;
+  display: flex;
+}
+
 .section-heading p {
-  color: var(--text-main);
+  color: #eef5f79e;
   letter-spacing: 0.12em;
   margin: 7px 0 0;
   font-size: 14px;
@@ -135,12 +142,6 @@ const careers = careerList
   font-size: clamp(34px, 3.5vw, 58px);
   font-weight: 300;
   line-height: 1;
-  margin-bottom: 60px;
-  font-family:
-    DIN Pro,
-    Arial,
-    Helvetica,
-    sans-serif;
 }
 .section-heading h2 span {
   color: var(--accent);

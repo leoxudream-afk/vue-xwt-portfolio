@@ -6,8 +6,9 @@
       href="#home"
       class="brand"
     >
+      <!-- vite public文件夹资源：直接 /logo.svg，不要写 /public/logo.svg -->
       <img
-        src="/public/logo.svg"
+        src="/logo.svg"
         alt="品牌logo"
         class="brand-mark"
       />
@@ -18,25 +19,24 @@
     <nav class="nav-links">
       <!--
         :class 动态绑定class
-        如果 activeId 和当前链接标识相等，就加上 nav-active 激活样式
-        @click.prevent：点击导航，手动更新激活项，和滚动高亮配合
+        @click.prevent：阻止原生a标签跳转，交给我们自定义平滑滚动函数
       -->
       <a
         href="#experience"
         :class="{ 'nav-active': activeId === 'experience' }"
-        @click.prevent="activeId = 'experience'"
+        @click.prevent="scrollToSection('experience')"
         >工作经历</a
       >
       <a
         href="#works"
         :class="{ 'nav-active': activeId === 'works' }"
-        @click.prevent="activeId = 'works'"
+        @click.prevent="scrollToSection('works')"
         >服务内容</a
       >
       <a
         href="#strengths"
         :class="{ 'nav-active': activeId === 'strengths' }"
-        @click.prevent="activeId = 'strengths'"
+        @click.prevent="scrollToSection('strengths')"
         >个人优势</a
       >
     </nav>
@@ -54,6 +54,7 @@
       <a
         href="#contact"
         class="contact-btn"
+        @click.prevent="scrollToSection('contact')"
         >联系方式</a
       >
     </div>
@@ -72,7 +73,7 @@ const isLight = ref(false)
 // activeId：记录导航当前激活项，默认【工作经历】
 const activeId = ref('experience')
 
-// -------------------------- 防抖函数（优化滚动性能，新手可以先记住模板） --------------------------
+// -------------------------- 防抖函数（优化滚动性能） --------------------------
 // 短时间多次滚动，不会反复执行handleScroll，减少浏览器压力
 const debounce = (fn, delay = 80) => {
   let timer = null
@@ -87,8 +88,8 @@ const debounce = (fn, delay = 80) => {
  * 页面滚动自动识别当前所在板块，自动高亮导航
  */
 const handleScroll = () => {
-  // 导航和区块的映射列表，href、id、文字一一对应，后期加导航只需要在这里加
-  const navList = [{ id: 'experience' }, { id: 'works' }, { id: 'strengths' }]
+  // 导航和区块的映射列表，后期新增导航只需要在这里追加
+  const navList = [{ id: 'experience' }, { id: 'works' }, { id: 'strengths' }, { id: 'contact' }]
 
   for (const item of navList) {
     const el = document.getElementById(item.id)
@@ -96,7 +97,7 @@ const handleScroll = () => {
 
     // 获取区块相对于浏览器窗口的位置信息
     const rect = el.getBoundingClientRect()
-    // 判断：区块经过屏幕中线时激活导航
+    // 判断规则：区块经过屏幕中线时激活导航
     if (rect.top < window.innerHeight / 2 && rect.bottom > window.innerHeight / 2) {
       activeId.value = item.id
       break
@@ -105,6 +106,28 @@ const handleScroll = () => {
 }
 // 给滚动函数套上防抖
 const scrollFn = debounce(handleScroll)
+
+/**
+ * 平滑滚动到指定区块（方案二核心函数）
+ * @param {string} id 目标区块DOM id
+ */
+const scrollToSection = (id) => {
+  const el = document.getElementById(id)
+  if (!el) return
+
+  // 更新导航高亮
+  activeId.value = id
+
+  // 导航栏高度，用来偏移，防止内容被fixed导航遮挡
+  const navHeight = 80
+  // 计算目标滚动位置
+  const top = el.getBoundingClientRect().top + window.scrollY - navHeight
+
+  window.scrollTo({
+    top,
+    behavior: 'smooth', // 开启平滑滚动动画
+  })
+}
 
 /**
  * 切换深色/浅色主题
@@ -133,13 +156,18 @@ onMounted(() => {
 
 // 组件销毁（离开页面）
 onUnmounted(() => {
-  // 移除滚动监听，防止内存泄漏、页面卡顿（前端重要好习惯）
+  // 移除滚动监听，防止内存泄漏、页面卡顿
   window.removeEventListener('scroll', scrollFn)
 })
 </script>
 
 <style scoped>
 /* scoped：样式只作用于当前组件，不会污染其他页面 */
+:root {
+  /* 全局主色调，你可以自行修改 */
+  --accent: #42b983;
+}
+
 .nav-bar {
   --nav-bg: rgba(10, 10, 10, 0.4);
   --nav-text: #ffffffe6;
@@ -175,6 +203,8 @@ onUnmounted(() => {
   height: 42px;
   padding: 0 20px 0 11px;
   overflow: hidden;
+  color: var(--nav-text);
+  text-decoration: none;
 }
 .brand-mark {
   background: var(--accent);
@@ -221,6 +251,8 @@ onUnmounted(() => {
   background: var(--nav-item-default-bg);
   border: 1px solid transparent; /* 透明边框占位，切换样式不会跳动 */
   transition: all 0.22s ease;
+  color: var(--nav-text);
+  text-decoration: none;
 }
 
 /* ========== 导航【选中激活样式】 框二：透明底+白色描边 ========== */
@@ -241,6 +273,8 @@ onUnmounted(() => {
   border-radius: 999px;
   font-size: 14px;
   transition: all 0.3s ease;
+  color: var(--nav-text);
+  text-decoration: none;
 }
 .contact-btn:hover {
   background: var(--accent);
@@ -258,6 +292,7 @@ onUnmounted(() => {
   font-size: 18px;
   cursor: pointer;
   transition: all 0.3s ease;
+  color: var(--nav-text);
 }
 .theme-toggle:hover {
   background: var(--accent);
@@ -271,13 +306,29 @@ onUnmounted(() => {
   align-items: center;
 }
 
+/* ====================== 浅色模式变量覆盖 ====================== */
+.light .nav-bar {
+  --nav-bg: rgba(255, 255, 255, 0.4);
+  --nav-text: #111111e6;
+  --nav-item-default-bg: rgba(0, 0, 0, 0.08);
+  --nav-item-border: rgba(0, 0, 0, 0.35);
+  --border-weak: rgba(0, 0, 0, 0.06);
+}
+.light .theme-toggle {
+  background: rgba(0, 0, 0, 0.08);
+  border-color: rgba(0, 0, 0, 0.2);
+}
+.light .contact-btn {
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
 /* ========== 手机端适配 宽度小于768px ========== */
 @media (max-width: 768px) {
   .nav-bar {
     padding: 16px 20px;
   }
   .nav-links {
-    display: none; /* 手机隐藏导航，后面可以再加汉堡折叠菜单 */
+    display: none; /* 手机隐藏导航，后续再加汉堡折叠菜单 */
   }
 }
 </style>

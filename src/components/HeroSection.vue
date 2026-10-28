@@ -1,4 +1,5 @@
 <template>
+  <!-- 首屏 -->
   <section
     class="hero-section"
     id="home"
@@ -155,13 +156,16 @@
 }
 
 .work-gallery {
-  position: absolute;
-  bottom: 40px;
-  left: 0;
-  right: 0;
-  z-index: 2;
+  z-index: 10;
+  width: 100%;
+  height: var(--card-height);
   cursor: grab;
-  overflow: hidden;
+  touch-action: pan-y;
+  overscroll-behavior: contain;
+  outline: none;
+  position: absolute;
+  bottom: clamp(24px, 2.7vh, 36px);
+  left: 0;
 }
 .work-gallery:active {
   cursor: grabbing;
@@ -176,7 +180,7 @@
   flex-shrink: 0;
   width: 200px;
   height: 280px;
-  border-radius: 12px;
+  border-radius: clamp(16px, 1.1vw, 22px);
   overflow: hidden;
   transition: transform 0.3s;
   cursor: pointer;

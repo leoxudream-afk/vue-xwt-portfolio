@@ -295,12 +295,12 @@ import { strengths } from '../data/portfolio.js'
 .strength-card img {
   position: absolute;
   z-index: 1;
-  bottom: -16%;
-  right: -4%;
-  width: min(44%, 230px);
+  bottom: 12px;
+  right: 12px;
+  width: min(28%, 168px);
   height: auto;
   object-fit: contain;
-  opacity: 0.78;
+  opacity: 0.6;
   filter: saturate(0.8);
   pointer-events: none;
   transition:
@@ -309,7 +309,7 @@ import { strengths } from '../data/portfolio.js'
     filter 0.28s;
 }
 .strength-card:hover img {
-  opacity: 0.9;
+  opacity: 0.2;
   filter: saturate(1);
 }
 

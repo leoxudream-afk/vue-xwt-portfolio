@@ -183,6 +183,7 @@ export const stats = [
 // 个性标签：一组文字
 export const tags = ['产品设计师', 'UI/UX设计师', 'UI工程师', 'AI设计师', '前端工程师', '产品经理']
 
+//个人作品模块
 // 个人作品：3 张卡片
 export const personalWorks = [
   {
@@ -191,7 +192,7 @@ export const personalWorks = [
     title: '企业级后台系统',
 
     desc: '消防安全管理平台 /业务管理系统 /流程审批与台账管理',
-    img: '/public/ai-video-cover.webp',
+    img: '/img-b-admin-design.png',
     // link: 'https://anmaai.cn/video.html',
   },
   {
@@ -199,7 +200,7 @@ export const personalWorks = [
     tag: '移动端产品',
     title: 'APP与小程序设计',
     desc: '企业APP /政务小程序 /移动办公与巡检应用',
-    img: '/public/ai-design-cover.webp',
+    img: '/img-mobile-app.png',
     // link: 'https://anmaai.cn/design.html',
   },
   {
@@ -207,11 +208,11 @@ export const personalWorks = [
     tag: '数据可视化',
     title: '可视化大屏与看板',
     desc: '运营数据大屏 /监控指挥看板 /统计分析面板',
-    img: '/public/ai-design-cover.webp',
+    img: '/img-data-visual.png',
     // link: 'https://anmaai.cn/design.html',
   },
 ]
-
+//个人优势模块
 // 个人优势：5 张卡片，wide 表示是否占两列
 export const strengths = [
   {
@@ -219,7 +220,7 @@ export const strengths = [
     tag: 'CORE',
     title: 'B端后台系统产品UI设计',
     details: ['业务需求拆解与原型输出', '后台界面与表单组件设计', '高保真交付与开发对接'],
-    img: '/public/strength-1.webp',
+    img: '/icon-b-admin-design.png',
     wide: true,
   },
   {
@@ -227,7 +228,7 @@ export const strengths = [
     tag: 'CORE',
     title: '数据可视化大屏设计',
     details: ['指挥看板布局规划', '图表组件视觉设计', '大屏适配与动效设计'],
-    img: '/public/strength-2.webp',
+    img: '/icon-data-visual.png',
     wide: true,
   },
   {
@@ -235,7 +236,7 @@ export const strengths = [
     tag: 'SYSTEM',
     title: '移动端APP/小程序设计',
     details: ['移动端交互流程设计', '巡检类功能界面设计', '多端组件规范输出'],
-    img: '/public/strength-3.webp',
+    img: '/icon-mobile-app.png',
     wide: false,
   },
   {
@@ -243,7 +244,7 @@ export const strengths = [
     tag: 'SYSTEM',
     title: '政企项目标书与方案撰写',
     details: ['数字化项目方案编写', '项目功能清单梳理', '投标材料配图制作'],
-    img: '/public/strength-4.webp',
+    img: '/icon-bid-document.png',
     wide: false,
   },
   {
@@ -251,15 +252,15 @@ export const strengths = [
     tag: 'SYSTEM',
     title: '前端Vue3页面实现',
     details: ['HTML+CSS页面搭建', 'Vue3基础业务开发', 'ElementPlus组件应用'],
-    img: '/public/strength-5.webp',
+    img: '/icon-vue-frontend.png',
     wide: false,
   },
 ]
 
-//联系方式
+//联系方式模块
 export const contactInfo = {
   phone: '18213560021',
   wechat: 'XWTa0o',
   email: 'leoxudream@gmail.com',
-  qr: '/public/contact-qr.png',
+  qr: '/contact-qr.png',
 }
